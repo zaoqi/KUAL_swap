@@ -1,0 +1,5 @@
+{
+	"items": [
+		{"name": "Enable swap", "priority": 1, "action": "./ui.sh"}
+	]
+}
