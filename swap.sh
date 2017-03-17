@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #KUAL swap
 #Copyright (C) 2017  zaoqi
 
@@ -14,8 +14,11 @@
 
 #You should have received a copy of the GNU Affero General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
+file=/var/local/SWAP
+dir=$(dirname $file)
 if [ ! -f /var/local/SWAP ] ;then
-	dd if=/dev/zero of=/var/local/SWAP bs=4096 count=8192
-	mkswap /var/local/SWAP
+	let c=$(df -mP $dir | grep $dir | awk '{print $4}')/3/2
+	dd if=/dev/zero of=$file bs=4096 count=$c
+	mkswap $file
 fi
 exec swapon /var/local/SWAP
