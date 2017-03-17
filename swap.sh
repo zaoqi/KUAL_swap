@@ -17,8 +17,8 @@
 file=/var/local/SWAP
 dir=$(dirname $file)
 if [ ! -f /var/local/SWAP ] ;then
-	let c=$(df -mP $dir | grep $dir | awk '{print $4}')/3/2
-	dd if=/dev/zero of=$file bs=4096 count=$c
+	let c=$(df -mP $dir | grep $dir | awk '{print $4}')/3
+	dd if=/dev/zero of=$file bs=1M count=$c
 	mkswap $file
 fi
 exec swapon /var/local/SWAP
